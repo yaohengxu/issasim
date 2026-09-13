@@ -33,10 +33,14 @@ isaacsim_interview_starter_zh/
 ├─ assets/
 │  └─ tabletop_task_template.usda       # 可阅读的 USD 场景模板
 └─ demos/
+   ├─ README.md
    ├─ 01_scene_basics.py
    ├─ 02_franka_joint_control.py
    ├─ 03_differential_ik_math.py
-   └─ 04_franka_joint_target_eval.py
+   ├─ 04_franka_joint_target_eval.py
+   ├─ 05_franka_wave_demo.py
+   ├─ 06_franka_ball_to_bowl.py
+   └─ 07_franka_soft_cloth_newton_demo.py
 ```
 
 ## 先运行什么
@@ -69,15 +73,17 @@ cd D:\sofaware2\issasim\isaac-sim-standalone-6.0.1-windows-x86_64
 4. 阅读 `11_传感器观测与合成数据.md`、`13_任务工程化与验证.md`、`14_岗位面试工程审查清单.md`，用自己的项目经历替换答案中的占位表达。
 5. 面试前按 `05_高频面试题.md` 和 `07_周末冲刺计划.md` 演练。
 
+所有示例的 GUI 运行命令、观察要点、无界面测试与排错入口见 [`demos/README.md`](demos/README.md)。
+
 ## 与现有 demo 的关系
 
 本工程的 demo 只覆盖最小可解释闭环；现有 `user_examples` 适合进阶演示：
 
 | 现有文件 | 可以在面试中说明的能力 |
 | --- | --- |
-| `franka_wave_demo.py` | 动态刚体、Jacobian、阻尼最小二乘差分 IK、末端跟踪误差 |
-| `franka_ball_to_bowl.py` | PickPlaceController、夹爪、PhysX 碰撞、抓取状态机、任务成功判定 |
-| `franka_soft_cloth_newton_demo.py` | 可变形物体/布料与 Newton 物理路径 |
+| `05_franka_wave_demo.py` | 动态刚体、Jacobian、阻尼最小二乘差分 IK、末端跟踪误差 |
+| `06_franka_ball_to_bowl.py` | PickPlaceController、夹爪、PhysX 碰撞、抓取状态机、任务成功判定 |
+| `07_franka_soft_cloth_newton_demo.py` | 可变形物体/布料与 Newton 物理路径 |
 
 运行它们的方式相同，例如：
 
