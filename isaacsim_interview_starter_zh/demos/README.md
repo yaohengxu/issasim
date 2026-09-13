@@ -133,6 +133,14 @@ open → approach → close → attach/verify → lift → move → release → 
 .\python.bat ..\isaacsim_interview_starter_zh\demos\07_franka_soft_cloth_newton_demo.py --viewer gl --headless --num-frames 2 --quiet
 ```
 
+Newton 的 OpenGL GUI 还需要 `pyglet`。若终端提示 `Newton GUI requires pyglet`，从 Isaac Sim 安装根目录执行一次：
+
+```powershell
+.\python.bat -m pip install pyglet
+```
+
+这只补充 Newton Viewer 的窗口依赖；不要为 07 单独安装 `warp`。
+
 查看 Newton 可用参数：
 
 ```powershell
@@ -158,6 +166,7 @@ open → approach → close → attach/verify → lift → move → release → 
 | --- | --- |
 | `No module named isaacsim` | 是否从安装根目录用 `python.bat` 启动？ |
 | `No module named warp`（07） | 确认使用学习工程中更新后的 `07` wrapper；不要直接执行 Newton 安装目录内的源文件，也不需要自行 `pip install warp` |
+| `Newton GUI requires pyglet`（07） | 从 Isaac Sim 安装根目录运行 `.\python.bat -m pip install pyglet`，然后重新执行 07 |
 | 找不到 assets root | 运行 `post_install.bat`，检查网络与资产缓存 |
 | GUI 启动慢 | Kit 首次加载 extension/Shader cache 正常，等待终端出现 `app ready` |
 | Franka 不动 | 是否 `reset/play/update` 完成；Prim path、DOF 数量、target 维度是否匹配？ |

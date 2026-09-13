@@ -43,6 +43,18 @@ sys.argv = [sys.argv[0]]
 # The ``finally`` also releases the GPU cleanly when argparse exits for --help.
 simulation_app = SimulationApp({"headless": True})
 try:
+    # Newton's default OpenGL viewer is optional in the Isaac Sim bundle and
+    # needs pyglet.  Check it here so a missing package produces an actionable
+    # error instead of an apparently successful immediate exit from the viewer.
+    if "--viewer" not in example_args or "gl" in example_args:
+        try:
+            import pyglet  # noqa: F401
+        except ModuleNotFoundError as error:
+            raise RuntimeError(
+                "Newton GUI requires pyglet. From the Isaac Sim installation root run: "
+                ".\\python.bat -m pip install pyglet"
+            ) from error
+
     sys.argv = [str(example), *example_args]
     runpy.run_path(str(example), run_name="__main__")
 finally:
