@@ -141,6 +141,14 @@ Newton 的 OpenGL GUI 还需要 `pyglet`。若终端提示 `Newton GUI requires 
 
 这只补充 Newton Viewer 的窗口依赖；不要为 07 单独安装 `warp`。
 
+07 在首次运行时还会从 Newton 的公开资产库下载 Franka 模型，因此需要 `GitPython` 和可用的 `git` 命令。若提示 `GitPython package is required`，执行一次：
+
+```powershell
+.\python.bat -m pip install GitPython
+```
+
+下载后的资产会缓存在 `%LOCALAPPDATA%\newton-physics`；后续运行通常不再下载。
+
 查看 Newton 可用参数：
 
 ```powershell
@@ -167,6 +175,7 @@ Newton 的 OpenGL GUI 还需要 `pyglet`。若终端提示 `Newton GUI requires 
 | `No module named isaacsim` | 是否从安装根目录用 `python.bat` 启动？ |
 | `No module named warp`（07） | 确认使用学习工程中更新后的 `07` wrapper；不要直接执行 Newton 安装目录内的源文件，也不需要自行 `pip install warp` |
 | `Newton GUI requires pyglet`（07） | 从 Isaac Sim 安装根目录运行 `.\python.bat -m pip install pyglet`，然后重新执行 07 |
+| `GitPython package is required`（07） | 从 Isaac Sim 安装根目录运行 `.\python.bat -m pip install GitPython`；确保终端中的 `git --version` 可用 |
 | 找不到 assets root | 运行 `post_install.bat`，检查网络与资产缓存 |
 | GUI 启动慢 | Kit 首次加载 extension/Shader cache 正常，等待终端出现 `app ready` |
 | Franka 不动 | 是否 `reset/play/update` 完成；Prim path、DOF 数量、target 维度是否匹配？ |
