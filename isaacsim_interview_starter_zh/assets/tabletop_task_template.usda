@@ -1,0 +1,56 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+# Teaching template: a small tabletop scene.  It intentionally contains no
+# external assets, so it is easy to inspect as text.  Production scenes should
+# reference versioned robot/object USD assets instead of copying them here.
+def Xform "World" (
+    kind = "assembly"
+)
+{
+    def PhysicsScene "PhysicsScene"
+    {
+        vector3f physics:gravityDirection = (0, 0, -1)
+        float physics:gravityMagnitude = 9.81
+    }
+
+    def Xform "Environment"
+    {
+        def Cube "TableTop" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            float size = 1
+            double3 xformOp:translate = (0, 0, 0.35)
+            float3 xformOp:scale = (1.2, 0.8, 0.08)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+    }
+
+    def Xform "Objects"
+    {
+        def Sphere "Target" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+        )
+        {
+            float radius = 0.04
+            float physics:mass = 0.05
+            double3 xformOp:translate = (0.15, 0, 0.60)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Xform "Task"
+    {
+        def Sphere "GoalMarker"
+        {
+            float radius = 0.055
+            double3 xformOp:translate = (-0.20, 0.15, 0.44)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}
